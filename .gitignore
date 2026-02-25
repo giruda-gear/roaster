@@ -1,1 +1,18 @@
+.DS_Store
 .env
+build/
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# React Router
+node_modules/
+.react-router/
