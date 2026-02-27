@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.database import Base, engine
 from app.routers import auth, user
 
+Base.metadata.drop_all(engine)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Roaster Backend")

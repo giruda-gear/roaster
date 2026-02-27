@@ -3,7 +3,7 @@ from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from starlette.status import HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 
-from app.core.auth import hash_password, verify_password
+from app.core.auth import create_access_token, hash_password, verify_password
 from app.database import get_db
 from app.models.user import User
 from app.schemas.user import UserCreate
@@ -31,9 +31,11 @@ class AuthService:
         if not user or not verify_password(password, user.password):
             raise HTTPException(
                 status_code=HTTP_401_UNAUTHORIZED,
-                detail="incorrect email or password",
+                detail="invalid credentials",
             )
-        return {"id": user.id, "email": user.email}
+            
+        token = create_access_token({"sub": str(user.id)})
+        return {"access_token": token, "token_type": "bearer"}
 
 
 def get_auth_service(db: Session = Depends(get_db)) -> AuthService:
