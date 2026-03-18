@@ -6,6 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base
 from app.enums.order import OrderStatus
 from app.models.order_item import OrderItem
+from app.models.user import User
 
 
 class Order(Base):
@@ -29,5 +30,5 @@ class Order(Base):
         onupdate=func.now(),
     )
 
-    user: Mapped["User"] = relationship("User", back_populates="orders")
-    items: Mapped[list["OrderItem"]] = relationship("OrderItem")
+    user: Mapped[User] = relationship(User)
+    items: Mapped[list["OrderItem"]] = relationship(OrderItem)
