@@ -2,5 +2,5 @@
 uv run fastapi dev app/main.py
 
 # alembic update
-alembic revision --autogenerate -m "message"
-alembic upgrade head
+uv run alembic revision --autogenerate -m "message"
+uv run alembic upgrade head
