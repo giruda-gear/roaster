@@ -1,9 +1,10 @@
 import datetime
 from decimal import Decimal
 import uuid
-from sqlalchemy import UUID, Enum, ForeignKey, Numeric, String, func
+from sqlalchemy import UUID, ForeignKey, Numeric, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database import Base, TimestampMixin
+from app.db_enums import value_enum
 from app.enums.order import OrderStatus
 from app.models.order_item import OrderItem
 from app.models.user import User
@@ -17,7 +18,8 @@ class Order(TimestampMixin, Base):
     )
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     status: Mapped[OrderStatus] = mapped_column(
-        Enum(OrderStatus), default=OrderStatus.ORDER_PLACED
+        value_enum(OrderStatus, name="order_status"),
+        default=OrderStatus.PLACED,
     )
     total_price: Mapped[Decimal] = mapped_column(Numeric(10, 2))
     address: Mapped[str] = mapped_column(String(255))

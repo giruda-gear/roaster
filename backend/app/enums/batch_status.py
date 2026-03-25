@@ -1,8 +1,8 @@
 import enum
 
 
-class BatchStatus(enum.Enum):
-    SCHEDULED = "SCHEDULED"
-    IN_PROGRESS = "IN_PROGRESS"
-    COMPLETE = "COMPLETE"
-    FAILED = "FAILED"
+class BatchStatus(enum.StrEnum):
+    SCHEDULED = "scheduled"
+    processing = "roasting"
+    COMPLETE = "complete"
+    FAILED = "failed"

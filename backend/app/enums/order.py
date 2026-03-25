@@ -1,9 +1,9 @@
 import enum
 
 
-class OrderStatus(enum.Enum):
-    ORDER_PLACED = "ORDER_PLACED"
-    PREPARING = "PREPARING"
-    SHIPPED = "SHIPPED"
-    DELIVERED = "DELIVERED"
-    CANCELLED = "CANCELLED"
+class OrderStatus(enum.StrEnum):
+    PLACED = "placed"
+    PREPARING = "preparing"
+    SHIPPED = "shipped"
+    DELIVERED = "delivered"
+    CANCELLED = "cancelled"
